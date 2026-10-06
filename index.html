@@ -319,6 +319,17 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
 .dock .wa{background:var(--gold-grad);color:#141005}
 .dock .cl{background:#0c0c0e;color:var(--gold-hi)}
 
+/* ============ AMBIENT SOUND ============ */
+.sound-toggle{position:fixed;right:18px;bottom:18px;z-index:56;min-width:46px;min-height:46px;padding:0 14px;border:1px solid var(--line);border-radius:24px;background:rgba(8,8,9,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:var(--mute);display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;box-shadow:0 12px 32px -14px rgba(0,0,0,.9);transition:color .3s,border-color .3s,background .3s,transform .3s}
+.sound-toggle:hover{color:var(--gold-hi);border-color:var(--gold);transform:translateY(-2px)}
+.sound-toggle svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sound-toggle .sound-off{display:block}
+.sound-toggle .sound-on{display:none}
+.sound-toggle[aria-pressed="true"]{color:#dceab9;border-color:rgba(116,173,76,.65);background:rgba(14,35,18,.9)}
+.sound-toggle[aria-pressed="true"] .sound-off{display:none}
+.sound-toggle[aria-pressed="true"] .sound-on{display:block}
+.sound-toggle span{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+
 /* ============ RISE ============ */
 .js .rise{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.16,.68,.32,1),transform .9s cubic-bezier(.16,.68,.32,1);transition-delay:var(--d,0s)}
 .js .rise.in{opacity:1;transform:none}
@@ -349,6 +360,8 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
 }
 @media(max-width:820px){
   .dock{display:grid}
+  .sound-toggle{right:12px;bottom:calc(64px + env(safe-area-inset-bottom));min-width:44px;width:44px;height:44px;padding:0}
+  .sound-toggle span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   .foot{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
   .proof{grid-template-columns:1fr 1fr}
   .proof>div:nth-child(2){border-right:0}
@@ -1020,6 +1033,13 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
   </a>
 </div>
 
+<!-- ============ AMBIENT SOUND ============ -->
+<button class="sound-toggle" id="soundToggle" type="button" aria-label="Play ambient sound" aria-pressed="false">
+  <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19z"/><path d="m16 9 5 6m0-6-5 6"/></svg>
+  <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19z"/><path d="M15 9.5a4 4 0 0 1 0 5M18 7a7 7 0 0 1 0 10"/></svg>
+  <span>Ambient sound</span>
+</button>
+
 <script>
 (function(){
   'use strict';
@@ -1072,6 +1092,101 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
     });
   }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.rise').forEach(function(el){ io.observe(el); });
+
+  // Gentle procedural ambience. Audible autoplay is attempted, then retried
+  // on the first visitor interaction when browser autoplay policy blocks it.
+  var soundToggle = document.getElementById('soundToggle');
+  var AudioEngine = window.AudioContext || window.webkitAudioContext;
+  var audioContext = null;
+  var masterGain = null;
+  var soundWanted = true;
+
+  function buildAmbience(){
+    if (!AudioEngine || audioContext) return;
+    audioContext = new AudioEngine();
+    masterGain = audioContext.createGain();
+    masterGain.gain.value = 0.032;
+    masterGain.connect(audioContext.destination);
+
+    // Soft, filtered brown-noise bed, similar to distant water or wind.
+    var seconds = 4;
+    var buffer = audioContext.createBuffer(1, audioContext.sampleRate * seconds, audioContext.sampleRate);
+    var data = buffer.getChannelData(0);
+    var last = 0;
+    for (var i = 0; i < data.length; i++){
+      var white = Math.random() * 2 - 1;
+      last = (last + .018 * white) / 1.018;
+      data[i] = last * 2.4;
+    }
+    var noise = audioContext.createBufferSource();
+    var lowpass = audioContext.createBiquadFilter();
+    var noiseGain = audioContext.createGain();
+    noise.buffer = buffer;
+    noise.loop = true;
+    lowpass.type = 'lowpass';
+    lowpass.frequency.value = 520;
+    noiseGain.gain.value = .34;
+    noise.connect(lowpass).connect(noiseGain).connect(masterGain);
+    noise.start();
+
+    // Two quiet sine layers create a warm, slowly breathing drone.
+    [130.81,196].forEach(function(frequency,index){
+      var tone = audioContext.createOscillator();
+      var toneGain = audioContext.createGain();
+      var lfo = audioContext.createOscillator();
+      var lfoGain = audioContext.createGain();
+      tone.type = 'sine';
+      tone.frequency.value = frequency;
+      toneGain.gain.value = index ? .055 : .075;
+      lfo.frequency.value = index ? .065 : .05;
+      lfoGain.gain.value = index ? .022 : .028;
+      lfo.connect(lfoGain).connect(toneGain.gain);
+      tone.connect(toneGain).connect(masterGain);
+      tone.start();
+      lfo.start();
+    });
+  }
+
+  function updateSoundButton(active){
+    soundToggle.setAttribute('aria-pressed', String(active));
+    soundToggle.setAttribute('aria-label', active ? 'Mute ambient sound' : 'Play ambient sound');
+  }
+
+  function playAmbience(){
+    if (!AudioEngine || !soundWanted) return;
+    buildAmbience();
+    var resumed = audioContext.resume();
+    if (resumed && resumed.then){
+      resumed.then(function(){ updateSoundButton(audioContext.state === 'running'); }).catch(function(){ updateSoundButton(false); });
+    } else {
+      updateSoundButton(audioContext.state === 'running');
+    }
+  }
+
+  function pauseAmbience(){
+    soundWanted = false;
+    if (audioContext) audioContext.suspend();
+    updateSoundButton(false);
+  }
+
+  soundToggle.addEventListener('click', function(event){
+    event.stopPropagation();
+    if (audioContext && audioContext.state === 'running') pauseAmbience();
+    else { soundWanted = true; playAmbience(); }
+  });
+
+  function unlockSound(event){
+    if (event.target && event.target.closest && event.target.closest('#soundToggle')) return;
+    if (soundWanted) playAmbience();
+  }
+  document.addEventListener('pointerdown', unlockSound, {once:true,passive:true});
+  document.addEventListener('keydown', unlockSound, {once:true});
+  window.addEventListener('load', function(){ window.setTimeout(playAmbience, 700); });
+  document.addEventListener('visibilitychange', function(){
+    if (!audioContext) return;
+    if (document.hidden) audioContext.suspend();
+    else if (soundWanted) playAmbience();
+  });
 
   // Year
   document.querySelectorAll('[data-y]').forEach(function(el){ el.textContent = new Date().getFullYear(); });
