@@ -185,6 +185,13 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
 .pk-fig{position:relative;margin-top:46px;border:1px solid var(--line-soft);border-radius:3px;overflow:hidden;background:var(--slab)}
 .pk-fig img{width:100%;aspect-ratio:2.36/1;object-fit:cover;filter:saturate(.85) brightness(.85) contrast(1.04);transition:transform .8s cubic-bezier(.16,.68,.32,1),filter .8s}
 .pk-fig:hover img{transform:scale(1.035);filter:saturate(.98) brightness(.95)}
+/* real daylight photos — keep authentic colour, skip the moody darkening */
+.card-img img.day{filter:saturate(.94) brightness(1.01) contrast(1.02)}
+.card:hover .card-img img.day{filter:saturate(1.03) brightness(1.03)}
+.pk-fig img.day{filter:saturate(.94) brightness(1.01) contrast(1.02)}
+.pk-fig:hover img.day{filter:saturate(1.02) brightness(1.03)}
+.frame img.day{filter:saturate(.95) brightness(1.01) contrast(1.02)}
+.g img.day{filter:saturate(.92) brightness(1.01)}
 .pk-fig figcaption{position:absolute;inset:auto 0 0 0;padding:44px 22px 16px;background:linear-gradient(180deg,transparent,rgba(5,5,6,.92));font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#d8d0c0}
 .calm{position:relative;overflow:hidden;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);display:grid;place-items:center;text-align:center;padding:clamp(76px,11vw,132px) var(--pad)}
 .calm-bg{position:absolute;inset:0;background:url('assets/img/services/calm-band.jpg') center 62%/cover no-repeat;filter:saturate(.85) brightness(.75) contrast(1.05)}
@@ -259,6 +266,9 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
 /* ============ VISIT ============ */
 .visit{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(24px,4vw,58px);margin-top:54px;align-items:start}
 .addr{display:grid;gap:15px}
+.ent{position:relative;border:1px solid var(--line-soft);border-radius:3px;overflow:hidden;background:var(--slab)}
+.ent img{display:block;width:100%;aspect-ratio:16/9.5;object-fit:cover;filter:saturate(.94) brightness(1.01) contrast(1.02)}
+.ent figcaption{position:absolute;inset:auto 0 0 0;padding:44px 18px 13px;background:linear-gradient(180deg,transparent,rgba(5,5,6,.9));font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#d8d0c0}
 .addr-card{position:relative;border:1px solid var(--line-soft);border-radius:3px;background:var(--slab);padding:26px 26px 24px;transition:border-color .35s,transform .35s}
 .addr-card:hover{border-color:var(--line);transform:translateY(-3px)}
 .addr-card h4{font-family:'Eagle Lake',serif;font-weight:400;font-size:19px;color:var(--gold-hi);margin-bottom:9px}
@@ -489,11 +499,11 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
     </div>
     <div class="rise" style="--d:.12s">
       <div class="frame">
-        <img src="assets/img/img3.jpeg" alt="Dr. Raju Bhusanar checking a patient's blood pressure at the clinic" loading="lazy" decoding="async">
+        <img src="assets/img/about-doctor.jpg" class="day" alt="Dr. Raju Bhusanar at his desk at the clinic — the doctor behind Yashraj Ayu" loading="lazy" decoding="async">
       </div>
       <div class="frame-chip" style="position:relative;left:auto;bottom:auto;margin:-40px 0 0 18px;display:inline-block">
         <b>Doctor-led, always</b>
-        <span>Every visit begins with vitals</span>
+        <span>Dr. Raju Bhusanar · BAMS</span>
       </div>
     </div>
   </div>
@@ -509,7 +519,7 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
   <div class="cards">
     <article class="card rise">
       <figure class="card-img">
-        <img src="assets/img/services/svc-consultation.jpg" alt="Ayurvedic consultation — a vaidya writing a herbal prescription on a palm-leaf manuscript while his patient speaks, amid brass bowls of turmeric, herbs, a copper kalash and a lit diya" loading="lazy" decoding="async">
+        <img src="assets/img/services/svc-consultation.jpg" class="day" alt="A real consultation at the clinic — the doctor studying a case and writing out the prescription, shelves of Ayurvedic medicines behind him" loading="lazy" decoding="async">
         <span class="num">01</span>
       </figure>
       <h3>Ayurvedic Consultation</h3>
@@ -518,7 +528,7 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
     </article>
     <article class="card featured rise" style="--d:.08s">
       <figure class="card-img">
-        <img src="assets/img/services/svc-panchakarma.jpg" alt="Shirodhara — warm herbal oil flowing onto the forehead during a Panchakarma session" loading="lazy" decoding="async">
+        <img src="assets/img/services/svc-panchakarma.jpg" class="day" alt="Janu Basti — warm medicated oil held in dough rings over the knees, a real Panchakarma treatment from the clinic" loading="lazy" decoding="async">
         <span class="tag">Signature</span>
       </figure>
       <h3>Panchakarma Therapy</h3>
@@ -527,7 +537,7 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
     </article>
     <article class="card rise" style="--d:.16s">
       <figure class="card-img">
-        <img src="assets/img/services/svc-detox.jpg" alt="Herbal decoctions and rising steam — the detox therapy preparations" loading="lazy" decoding="async">
+        <img src="assets/img/services/svc-detox.jpg" class="day" alt="Pinda Sweda — a warm herbal bolus pressed onto the back during detoxifying sudation therapy" loading="lazy" decoding="async">
         <span class="num">03</span>
       </figure>
       <h3>Detox Therapy</h3>
@@ -554,7 +564,7 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
     </article>
     <article class="card rise" style="--d:.4s">
       <figure class="card-img">
-        <img src="assets/img/services/svc-physio.jpg" alt="Gentle therapeutic massage — physiotherapy and rehabilitation care" loading="lazy" decoding="async">
+        <img src="assets/img/services/svc-physio.jpg" class="day" alt="Hands-on care — the doctor giving a gentle therapeutic back massage as part of rehabilitation" loading="lazy" decoding="async">
         <span class="num">06</span>
       </figure>
       <h3>Physiotherapy</h3>
@@ -604,8 +614,8 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
     </div>
   </div>
   <figure class="pk-fig rise">
-    <img src="assets/img/services/wide-abhyanga.jpg" alt="Synchronised Abhyanga — two therapists applying warm herbal oil during Panchakarma" loading="lazy" decoding="async">
-    <figcaption>Abhyanga — warm herbal oil, applied in rhythm by two therapists</figcaption>
+    <img src="assets/img/services/wide-shirodhara.jpg" class="day" alt="Shirodhara — warm oil poured in a gentle, steady stream over the forehead, the doctor attending through the whole session" loading="lazy" decoding="async">
+    <figcaption>Shirodhara — a steady stream of warm oil, and the mind goes quiet</figcaption>
   </figure>
   <div class="pk">
     <div class="rise"><b>Purvakarma</b><span>Preparation — oleation, sudation and diet make the body ready to release.</span></div>
@@ -757,12 +767,12 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
       <figcaption>Authentic formulations, shared personally</figcaption>
     </figure>
     <figure class="g rise" style="--d:.24s">
-      <img src="assets/img/img3.jpeg" alt="Blood pressure check at the clinic" loading="lazy" decoding="async">
+      <img src="assets/img/real-bp-check.jpg" class="day" alt="Dr. Raju checking a patient's blood pressure at the clinic" loading="lazy" decoding="async">
       <figcaption>Blood pressure &amp; vitals, every visit</figcaption>
     </figure>
     <figure class="g rise" style="--d:.32s">
-      <img src="assets/img/img5.jpeg" alt="Guidance on an Ayurvedic remedy" loading="lazy" decoding="async">
-      <figcaption>Guidance on every remedy</figcaption>
+      <img src="assets/img/real-camp-consult.jpg" class="day" alt="A consultation in progress at one of our community health camps" loading="lazy" decoding="async">
+      <figcaption>Care beyond the clinic — health camps</figcaption>
     </figure>
     <figure class="g rise" style="--d:.4s">
       <img src="assets/img/img6.jpeg" alt="Patient care and wellness outreach" loading="lazy" decoding="async">
@@ -823,6 +833,10 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
   </div>
   <div class="visit">
     <div class="addr">
+      <figure class="ent rise">
+        <img src="assets/img/clinic-entrance.jpg" alt="The Yashraj Clinic entrance on the street in Naikwaddo, Calangute — look for the sign above the door" loading="lazy" decoding="async">
+        <figcaption>The clinic door · Naikwaddo, Calangute</figcaption>
+      </figure>
       <div class="addr-card rise">
         <span class="tag2">Main Clinic</span>
         <h4>Yashraj Ayu · Calangute</h4>
