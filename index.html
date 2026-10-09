@@ -260,6 +260,22 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
 .g-tile a.soc:hover{color:var(--gold)}
 
 /* ============ QUOTES ============ */
+.video-stories{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:52px}
+.video-story{overflow:hidden;border:1px solid var(--line-soft);border-radius:3px;background:linear-gradient(180deg,var(--slab),var(--pit));transition:transform .4s,border-color .4s}
+.video-story:hover{transform:translateY(-5px);border-color:var(--line)}
+.video-stage{position:relative;aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 50% 42%,rgba(201,162,39,.16),transparent 31%),linear-gradient(145deg,#18150e,#09090a 68%)}
+.video-stage::before,.video-stage::after{content:'';position:absolute;border:1px solid rgba(201,162,39,.12);border-radius:50%}
+.video-stage::before{width:180px;height:180px}
+.video-stage::after{width:112px;height:112px}
+.video-symbol{position:relative;z-index:2;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:#151005;background:var(--gold-grad);box-shadow:0 16px 36px -14px rgba(201,162,39,.7)}
+.video-symbol svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.video-status{position:absolute;left:14px;bottom:13px;z-index:2;padding:6px 9px;border:1px solid var(--line);border-radius:2px;background:rgba(5,5,6,.78);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hi)}
+.video-body{padding:20px 21px 22px}
+.video-body span{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.video-body h3{font-size:17px;font-weight:600;margin-top:5px}
+.video-body p{font-size:13.5px;color:var(--mute-2);margin-top:8px}
+.written-head{display:flex;align-items:center;gap:14px;margin-top:48px;font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-hi)}
+.written-head::after{content:'';height:1px;flex:1;background:var(--line-soft)}
 .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:52px}
 .qt{position:relative;background:linear-gradient(180deg,var(--slab),var(--pit));border:1px solid var(--line-soft);border-radius:3px;padding:34px 28px 28px;transition:transform .4s,border-color .4s}
 .qt:hover{transform:translateY(-5px);border-color:var(--line)}
@@ -349,6 +365,8 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
 }
 @media(max-width:1000px){
   .gallery{grid-template-columns:repeat(2,1fr)}
+  .video-stories{grid-template-columns:1fr 1fr}
+  .video-story:last-child{grid-column:1/-1}
   .quotes{grid-template-columns:1fr 1fr}
   .quotes .qt:last-child{grid-column:1/-1}
   .qa-grid{grid-template-columns:repeat(2,1fr)}
@@ -395,6 +413,8 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
   .hero-note{align-items:flex-start;font-size:10.5px;letter-spacing:.1em;line-height:1.55}
   .hero-note::before{margin-top:.7em;flex:none}
   .cards{grid-template-columns:1fr}
+  .video-stories{grid-template-columns:1fr}
+  .video-story:last-child{grid-column:auto}
   .quotes{grid-template-columns:1fr}
   .quotes .qt:last-child{grid-column:auto}
   .qa-grid{grid-template-columns:1fr}
@@ -505,9 +525,10 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
     <a href="#about">About</a>
     <a href="#therapies">Therapies</a>
     <a href="#panchakarma">Panchakarma</a>
-    <a href="#doctors">Doctors</a>
     <a href="#gallery">Gallery</a>
+    <a href="#testimonials">Testimonials</a>
     <a href="#visit">Visit Us</a>
+    <a href="#doctors">Doctors</a>
   </nav>
   <a class="btn btn-gold sm" href="https://wa.me/919011932151?text=Namaste!%20I%20would%20like%20to%20book%20a%20consultation%20at%20Yashraj%20Ayu." target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 9 9 0 0 1-3.4-.7L4 21l1.9-4.9A8.6 8.6 0 0 1 12.5 3.2 8.4 8.4 0 0 1 21 11.5z"/></svg>
@@ -524,10 +545,10 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
   <a class="dl" href="#about">About</a>
   <a class="dl" href="#therapies">Therapies</a>
   <a class="dl" href="#panchakarma">Panchakarma</a>
-  <a class="dl" href="#doctors">Doctors</a>
   <a class="dl" href="#gallery">Gallery</a>
-  <a class="dl" href="#stories">Stories</a>
+  <a class="dl" href="#testimonials">Testimonials</a>
   <a class="dl" href="#visit">Visit Us</a>
+  <a class="dl" href="#doctors">Doctors</a>
   <div class="drawer-contact">
     <a class="btn btn-gold sm" href="https://wa.me/919011932151?text=Namaste!%20I%20would%20like%20to%20book%20a%20consultation%20at%20Yashraj%20Ayu." target="_blank" rel="noopener">WhatsApp</a>
     <a class="btn btn-ghost sm" href="tel:+919011932151">Call Clinic</a>
@@ -726,6 +747,153 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
   </div>
 </section>
 
+<!-- ============ GALLERY ============ -->
+<section class="band" id="gallery">
+  <div class="head rise">
+    <span class="over">From the Journey</span>
+    <h2 class="disp">The care <span class="gilt">behind the crest</span></h2>
+    <p class="lead">Real moments from Yashraj Clinic — the practice that Yashraj Ayu grows from.</p>
+  </div>
+  <div class="gallery">
+    <figure class="g wide rise">
+      <img src="assets/img/img8.jpeg" alt="Doctor consultation at Yashraj Clinic — vitals and BP check with a patient" loading="lazy" decoding="async">
+      <figcaption>Doctor consultation — vitals checked first, always</figcaption>
+    </figure>
+    <figure class="g rise" style="--d:.08s">
+      <img src="assets/img/img1.jpeg" alt="Dr. Raju Bhusanar with a patient at a community event in Calangute" loading="lazy" decoding="async">
+      <figcaption>Community care in Calangute</figcaption>
+    </figure>
+    <figure class="g rise" style="--d:.16s">
+      <img src="assets/img/img2.jpeg" alt="Patient receiving an authentic Ayurvedic formulation" loading="lazy" decoding="async">
+      <figcaption>Authentic formulations, shared personally</figcaption>
+    </figure>
+    <figure class="g rise" style="--d:.24s">
+      <img src="assets/img/real-bp-check.jpg" class="day" alt="Dr. Raju checking a patient's blood pressure at the clinic" loading="lazy" decoding="async">
+      <figcaption>Blood pressure &amp; vitals, every visit</figcaption>
+    </figure>
+    <figure class="g rise" style="--d:.32s">
+      <img src="assets/img/real-camp-consult.jpg" class="day" alt="A consultation in progress at one of our community health camps" loading="lazy" decoding="async">
+      <figcaption>Care beyond the clinic — health camps</figcaption>
+    </figure>
+    <figure class="g rise" style="--d:.4s">
+      <img src="assets/img/img6.jpeg" alt="Patient care and wellness outreach" loading="lazy" decoding="async">
+      <figcaption>Wellness outreach &amp; patient care</figcaption>
+    </figure>
+    <div class="g g-tile rise" style="--d:.48s">
+      <span class="over">Follow</span>
+      <b>Daily care stories &amp; wellness tips</b>
+      <a class="soc" href="https://www.instagram.com/ayu_goa__india" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+        @ayu_goa__india
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="band alt" id="testimonials">
+  <div class="head rise">
+    <span class="over">Client Testimonials</span>
+    <h2 class="disp">Healing stories, <span class="gilt">shared personally</span></h2>
+    <p class="lead">A dedicated home for client video stories and written experiences. Videos will be published here only with the client’s consent.</p>
+  </div>
+  <div class="video-stories" aria-label="Client video testimonials">
+    <article class="video-story rise">
+      <div class="video-stage">
+        <span class="video-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span>
+        <span class="video-status">Coming soon</span>
+      </div>
+      <div class="video-body"><span>Client Video 01</span><h3>A journey in their own words</h3><p>Our first client video story will appear here soon.</p></div>
+    </article>
+    <article class="video-story rise" style="--d:.08s">
+      <div class="video-stage">
+        <span class="video-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span>
+        <span class="video-status">Coming soon</span>
+      </div>
+      <div class="video-body"><span>Client Video 02</span><h3>Real care, real experience</h3><p>More personal experiences are coming soon.</p></div>
+    </article>
+    <article class="video-story rise" style="--d:.16s">
+      <div class="video-stage">
+        <span class="video-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span>
+        <span class="video-status">Coming soon</span>
+      </div>
+      <div class="video-body"><span>Client Video 03</span><h3>Progress worth sharing</h3><p>Stories from the Yashraj community are on the way.</p></div>
+    </article>
+  </div>
+  <h3 class="written-head rise">Written experiences</h3>
+  <div class="quotes">
+    <article class="qt rise">
+      <p>Dr. Bhusanar's approach is truly holistic and reassuring. From the very first consultation, everything felt personalized, well-structured, and thoughtfully explained.</p>
+      <div class="qt-person">
+        <span class="qt-av">PS</span>
+        <span><b>Priya Sharma</b><span>Mumbai, India</span></span>
+        <span class="stars">★★★★★</span>
+      </div>
+    </article>
+    <article class="qt rise" style="--d:.08s">
+      <p>I traveled to Goa after hearing about the clinic, and it was absolutely worth it. The entire process — from booking to consultation — was seamless, professional, and stress-free.</p>
+      <div class="qt-person">
+        <span class="qt-av">JW</span>
+        <span><b>James Wilson</b><span>London, UK</span></span>
+        <span class="stars">★★★★★</span>
+      </div>
+    </article>
+    <article class="qt rise" style="--d:.16s">
+      <p>We had almost lost hope, but the care and guidance we received here changed everything for us. Dr. Bhusanar is incredibly compassionate and takes time to truly understand each concern.</p>
+      <div class="qt-person">
+        <span class="qt-av">AR</span>
+        <span><b>Anita Reddy</b><span>Hyderabad, India</span></span>
+        <span class="stars">★★★★★</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="band" id="visit">
+  <div class="head rise">
+    <span class="over">Visit Us</span>
+    <h2 class="disp">Find us in <span class="gilt">Calangute</span></h2>
+    <p class="lead">Walk in for a consultation, or message us to plan a therapy programme — in clinic or online.</p>
+  </div>
+  <div class="visit">
+    <div class="addr">
+      <figure class="ent rise">
+        <img src="assets/img/clinic-entrance.jpg" alt="The Yashraj Clinic entrance on the street in Naikwaddo, Calangute — look for the sign above the door" loading="lazy" decoding="async">
+        <figcaption>The clinic door · Naikwaddo, Calangute</figcaption>
+      </figure>
+      <div class="addr-card rise">
+        <span class="tag2">Main Clinic</span>
+        <h4>Yashraj Ayu · Calangute</h4>
+        <p>Shop No. CS4, Ground Floor, Benson Complex, Opp. SBI Bank, Naikwaddo, Calangute, Goa 403516</p>
+        <a class="dir" href="https://www.google.com/maps/search/?api=1&query=Yashraj+Clinic+Benson+Complex+Naikwaddo+Calangute+Goa" target="_blank" rel="noopener">Get directions ↗</a>
+      </div>
+      <div class="lines">
+        <a class="line rise" href="tel:+919011932151">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l1.5 4.5L8 10a12 12 0 0 0 6 6l1.5-2.5L20 15v4a1.5 1.5 0 0 1-1.7 1.5C10.6 19.6 4.4 13.4 3.5 5.7A1.5 1.5 0 0 1 5 4z"/></svg></span>
+          <span><b>+91 90119 32151</b><span>Call or WhatsApp</span></span>
+        </a>
+        <a class="line rise" style="--d:.06s" href="tel:+919637711394">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l1.5 4.5L8 10a12 12 0 0 0 6 6l1.5-2.5L20 15v4a1.5 1.5 0 0 1-1.7 1.5C10.6 19.6 4.4 13.4 3.5 5.7A1.5 1.5 0 0 1 5 4z"/></svg></span>
+          <span><b>+91 96377 11394</b><span>Second line</span></span>
+        </a>
+        <a class="line rise" style="--d:.12s" href="mailto:rajubhusanar@gmail.com">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>
+          <span><b>rajubhusanar@gmail.com</b><span>Email us</span></span>
+        </a>
+        <div class="line rise" style="--d:.18s">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+          <span><b>Open 24×7</b><span>Walk-ins welcome</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="map rise" style="--d:.14s">
+      <iframe title="Yashraj Ayu location — Benson Complex, Naikwaddo, Calangute, Goa" src="https://www.google.com/maps?q=Benson%20Complex%2C%20Naikwaddo%2C%20Calangute%2C%20Goa%20403516&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <span class="map-note">Naikwaddo · Calangute · Goa</span>
+    </div>
+  </div>
+</section>
+
 <!-- ============ DOCTORS ============ -->
 <section class="band alt" id="doctors">
   <div class="head rise">
@@ -841,129 +1009,6 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
   </details>
 </section>
 
-<!-- ============ GALLERY ============ -->
-<section class="band" id="gallery">
-  <div class="head rise">
-    <span class="over">From the Journey</span>
-    <h2 class="disp">The care <span class="gilt">behind the crest</span></h2>
-    <p class="lead">Real moments from Yashraj Clinic — the practice that Yashraj Ayu grows from.</p>
-  </div>
-  <div class="gallery">
-    <figure class="g wide rise">
-      <img src="assets/img/img8.jpeg" alt="Doctor consultation at Yashraj Clinic — vitals and BP check with a patient" loading="lazy" decoding="async">
-      <figcaption>Doctor consultation — vitals checked first, always</figcaption>
-    </figure>
-    <figure class="g rise" style="--d:.08s">
-      <img src="assets/img/img1.jpeg" alt="Dr. Raju Bhusanar with a patient at a community event in Calangute" loading="lazy" decoding="async">
-      <figcaption>Community care in Calangute</figcaption>
-    </figure>
-    <figure class="g rise" style="--d:.16s">
-      <img src="assets/img/img2.jpeg" alt="Patient receiving an authentic Ayurvedic formulation" loading="lazy" decoding="async">
-      <figcaption>Authentic formulations, shared personally</figcaption>
-    </figure>
-    <figure class="g rise" style="--d:.24s">
-      <img src="assets/img/real-bp-check.jpg" class="day" alt="Dr. Raju checking a patient's blood pressure at the clinic" loading="lazy" decoding="async">
-      <figcaption>Blood pressure &amp; vitals, every visit</figcaption>
-    </figure>
-    <figure class="g rise" style="--d:.32s">
-      <img src="assets/img/real-camp-consult.jpg" class="day" alt="A consultation in progress at one of our community health camps" loading="lazy" decoding="async">
-      <figcaption>Care beyond the clinic — health camps</figcaption>
-    </figure>
-    <figure class="g rise" style="--d:.4s">
-      <img src="assets/img/img6.jpeg" alt="Patient care and wellness outreach" loading="lazy" decoding="async">
-      <figcaption>Wellness outreach &amp; patient care</figcaption>
-    </figure>
-    <div class="g g-tile rise" style="--d:.48s">
-      <span class="over">Follow</span>
-      <b>Daily care stories &amp; wellness tips</b>
-      <a class="soc" href="https://www.instagram.com/ayu_goa__india" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
-        @ayu_goa__india
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ STORIES ============ -->
-<section class="band alt" id="stories">
-  <div class="head rise">
-    <span class="over">Patient Stories</span>
-    <h2 class="disp">Care that patients <span class="gilt">remember</span></h2>
-    <p class="lead">In their own words.</p>
-  </div>
-  <div class="quotes">
-    <article class="qt rise">
-      <p>Dr. Bhusanar's approach is truly holistic and reassuring. From the very first consultation, everything felt personalized, well-structured, and thoughtfully explained.</p>
-      <div class="qt-person">
-        <span class="qt-av">PS</span>
-        <span><b>Priya Sharma</b><span>Mumbai, India</span></span>
-        <span class="stars">★★★★★</span>
-      </div>
-    </article>
-    <article class="qt rise" style="--d:.08s">
-      <p>I traveled to Goa after hearing about the clinic, and it was absolutely worth it. The entire process — from booking to consultation — was seamless, professional, and stress-free.</p>
-      <div class="qt-person">
-        <span class="qt-av">JW</span>
-        <span><b>James Wilson</b><span>London, UK</span></span>
-        <span class="stars">★★★★★</span>
-      </div>
-    </article>
-    <article class="qt rise" style="--d:.16s">
-      <p>We had almost lost hope, but the care and guidance we received here changed everything for us. Dr. Bhusanar is incredibly compassionate and takes time to truly understand each concern.</p>
-      <div class="qt-person">
-        <span class="qt-av">AR</span>
-        <span><b>Anita Reddy</b><span>Hyderabad, India</span></span>
-        <span class="stars">★★★★★</span>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ============ VISIT ============ -->
-<section class="band" id="visit">
-  <div class="head rise">
-    <span class="over">Visit Us</span>
-    <h2 class="disp">Find us in <span class="gilt">Calangute</span></h2>
-    <p class="lead">Walk in for a consultation, or message us to plan a therapy programme — in clinic or online.</p>
-  </div>
-  <div class="visit">
-    <div class="addr">
-      <figure class="ent rise">
-        <img src="assets/img/clinic-entrance.jpg" alt="The Yashraj Clinic entrance on the street in Naikwaddo, Calangute — look for the sign above the door" loading="lazy" decoding="async">
-        <figcaption>The clinic door · Naikwaddo, Calangute</figcaption>
-      </figure>
-      <div class="addr-card rise">
-        <span class="tag2">Main Clinic</span>
-        <h4>Yashraj Ayu · Calangute</h4>
-        <p>Shop No. CS4, Ground Floor, Benson Complex, Opp. SBI Bank, Naikwaddo, Calangute, Goa 403516</p>
-        <a class="dir" href="https://www.google.com/maps/search/?api=1&query=Yashraj+Clinic+Benson+Complex+Naikwaddo+Calangute+Goa" target="_blank" rel="noopener">Get directions ↗</a>
-      </div>
-      <div class="lines">
-        <a class="line rise" href="tel:+919011932151">
-          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l1.5 4.5L8 10a12 12 0 0 0 6 6l1.5-2.5L20 15v4a1.5 1.5 0 0 1-1.7 1.5C10.6 19.6 4.4 13.4 3.5 5.7A1.5 1.5 0 0 1 5 4z"/></svg></span>
-          <span><b>+91 90119 32151</b><span>Call or WhatsApp</span></span>
-        </a>
-        <a class="line rise" style="--d:.06s" href="tel:+919637711394">
-          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l1.5 4.5L8 10a12 12 0 0 0 6 6l1.5-2.5L20 15v4a1.5 1.5 0 0 1-1.7 1.5C10.6 19.6 4.4 13.4 3.5 5.7A1.5 1.5 0 0 1 5 4z"/></svg></span>
-          <span><b>+91 96377 11394</b><span>Second line</span></span>
-        </a>
-        <a class="line rise" style="--d:.12s" href="mailto:rajubhusanar@gmail.com">
-          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>
-          <span><b>rajubhusanar@gmail.com</b><span>Email us</span></span>
-        </a>
-        <div class="line rise" style="--d:.18s">
-          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
-          <span><b>Open 24×7</b><span>Walk-ins welcome</span></span>
-        </div>
-      </div>
-    </div>
-    <div class="map rise" style="--d:.14s">
-      <iframe title="Yashraj Ayu location — Benson Complex, Naikwaddo, Calangute, Goa" src="https://www.google.com/maps?q=Benson%20Complex%2C%20Naikwaddo%2C%20Calangute%2C%20Goa%20403516&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-      <span class="map-note">Naikwaddo · Calangute · Goa</span>
-    </div>
-  </div>
-</section>
-
 <!-- ============ CLOSER ============ -->
 <section class="closer">
   <span class="over rise">Begin Today</span>
@@ -1003,9 +1048,10 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
         <li><a href="#about">About</a></li>
         <li><a href="#therapies">Therapies</a></li>
         <li><a href="#panchakarma">Panchakarma</a></li>
-        <li><a href="#doctors">Doctors</a></li>
         <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#visit">Visit Us</a></li>
+        <li><a href="#doctors">Doctors</a></li>
       </ul>
     </div>
     <div>
@@ -1067,6 +1113,7 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
   var burger = document.getElementById('burger');
   var drawer = document.getElementById('drawer');
   var drawerClose = document.getElementById('drawerClose');
+
   function setDrawer(open){
     var wasOpen = drawer.classList.contains('open');
     drawer.classList.toggle('open', open);
