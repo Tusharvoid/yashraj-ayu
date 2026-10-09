@@ -227,6 +227,10 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
 .tm h4{font-size:16.5px;font-weight:600;letter-spacing:.02em}
 .tm .role{display:block;margin:7px 0 9px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
 .tm p{font-size:13.5px;color:var(--mute-2)}
+.tm.yaashiika .tm-img img{object-position:center 28%}
+.tm-quals{list-style:none;display:grid;gap:7px;margin-top:14px;padding-top:13px;border-top:1px dashed rgba(236,230,218,.1)}
+.tm-quals li{position:relative;padding-left:14px;font-size:11.5px;line-height:1.45;color:var(--mute)}
+.tm-quals li::before{content:'✦';position:absolute;left:0;top:.15em;color:var(--gold);font-size:7px}
 .qa{margin-top:46px;border:1px solid var(--line-soft);border-radius:3px;background:var(--slab);overflow:hidden}
 .qa summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:21px 26px;cursor:pointer;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-hi)}
 .qa summary::-webkit-details-marker{display:none}
@@ -772,12 +776,21 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
         <p>Family medicine, everyday care and clinical oversight of the centre.</p>
       </div>
     </article>
-    <article class="tm rise" style="--d:.12s">
-      <div class="tm-img"><img src="assets/team/yaashiika-y-sawant.jpg" alt="Yaashiika Y. Sawant, MA Yogshastra — yoga therapist" loading="lazy" decoding="async"></div>
+    <article class="tm yaashiika rise" style="--d:.12s">
+      <div class="tm-img"><img src="assets/team/yaashiika-y-sawant.jpg" alt="Yaashiika Y. Sawant, founder of Om Advaita Yog Institute and yoga teacher" loading="lazy" decoding="async"></div>
       <div class="tm-in">
         <h4>Yaashiika Y. Sawant</h4>
-        <span class="role">MA (Yogshastra) · Yoga Therapy</span>
-        <p>Asana, pranayama and lifestyle counselling matched to each patient.</p>
+        <span class="role">Founder · Om Advaita Yog Institute</span>
+        <p>Yoga educator specialising in Hatha Yoga, pranayama, meditation and Yoga Pilates.</p>
+        <ul class="tm-quals" aria-label="Qualifications">
+          <li>PG Diploma in Yogic Sciences</li>
+          <li>Master’s in Yogashastra</li>
+          <li>Advanced Professional Certification — Yoga Certification Board (YCB), Ministry of AYUSH, Government of India</li>
+          <li>Certified Hatha Yoga Teacher — RYT, Yoga Alliance USA</li>
+          <li>Certified Yoga Pilates Teacher — Yoga Alliance USA</li>
+          <li>Certified Pranayama &amp; Meditation Teacher — Yoga Alliance USA</li>
+          <li>PhD Aspirant in Yoga Studies</li>
+        </ul>
       </div>
     </article>
     <article class="tm rise" style="--d:.18s">
