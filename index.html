@@ -263,13 +263,9 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
 .video-stories{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:52px}
 .video-story{overflow:hidden;border:1px solid var(--line-soft);border-radius:3px;background:linear-gradient(180deg,var(--slab),var(--pit));transition:transform .4s,border-color .4s}
 .video-story:hover{transform:translateY(-5px);border-color:var(--line)}
-.video-stage{position:relative;aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 50% 42%,rgba(201,162,39,.16),transparent 31%),linear-gradient(145deg,#18150e,#09090a 68%)}
-.video-stage::before,.video-stage::after{content:'';position:absolute;border:1px solid rgba(201,162,39,.12);border-radius:50%}
-.video-stage::before{width:180px;height:180px}
-.video-stage::after{width:112px;height:112px}
-.video-symbol{position:relative;z-index:2;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:#151005;background:var(--gold-grad);box-shadow:0 16px 36px -14px rgba(201,162,39,.7)}
-.video-symbol svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.video-status{position:absolute;left:14px;bottom:13px;z-index:2;padding:6px 9px;border:1px solid var(--line);border-radius:2px;background:rgba(5,5,6,.78);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hi)}
+.video-stage{aspect-ratio:4/5;overflow:hidden;background:#080808}
+.video-stage video{display:block;width:100%;height:100%;object-fit:contain}
+.video-story:last-child{grid-column:2}
 .video-body{padding:20px 21px 22px}
 .video-body span{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
 .video-body h3{font-size:17px;font-weight:600;margin-top:5px}
@@ -366,7 +362,7 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
 @media(max-width:1000px){
   .gallery{grid-template-columns:repeat(2,1fr)}
   .video-stories{grid-template-columns:1fr 1fr}
-  .video-story:last-child{grid-column:1/-1}
+  .video-story:last-child{grid-column:1/-1;width:calc(50% - 9px);justify-self:center}
   .quotes{grid-template-columns:1fr 1fr}
   .quotes .qt:last-child{grid-column:1/-1}
   .qa-grid{grid-template-columns:repeat(2,1fr)}
@@ -414,7 +410,7 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
   .hero-note::before{margin-top:.7em;flex:none}
   .cards{grid-template-columns:1fr}
   .video-stories{grid-template-columns:1fr}
-  .video-story:last-child{grid-column:auto}
+  .video-story:last-child{grid-column:auto;width:auto}
   .quotes{grid-template-columns:1fr}
   .quotes .qt:last-child{grid-column:auto}
   .qa-grid{grid-template-columns:1fr}
@@ -795,29 +791,36 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
   <div class="head rise">
     <span class="over">Client Testimonials</span>
     <h2 class="disp">Healing stories, <span class="gilt">shared personally</span></h2>
-    <p class="lead">A dedicated home for client video stories and written experiences. Videos will be published here only with the client’s consent.</p>
+    <p class="lead">Hear directly from people who visited the clinic. Select a video to watch their experience.</p>
   </div>
   <div class="video-stories" aria-label="Client video testimonials">
     <article class="video-story rise">
-      <div class="video-stage">
-        <span class="video-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span>
-        <span class="video-status">Coming soon</span>
-      </div>
-      <div class="video-body"><span>Client Video 01</span><h3>A journey in their own words</h3><p>Our first client video story will appear here soon.</p></div>
+      <div class="video-stage"><video class="testimonial-video" controls preload="none" playsinline poster="assets/img/testimonials/client-story-01.jpg" aria-label="Play client story 1"><source src="assets/video/client-story-01.mp4" type="video/mp4">Your browser does not support video playback.</video></div>
+      <div class="video-body"><span>Video testimonial · 1:26</span><h3>Client story 01</h3></div>
     </article>
     <article class="video-story rise" style="--d:.08s">
-      <div class="video-stage">
-        <span class="video-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span>
-        <span class="video-status">Coming soon</span>
-      </div>
-      <div class="video-body"><span>Client Video 02</span><h3>Real care, real experience</h3><p>More personal experiences are coming soon.</p></div>
+      <div class="video-stage"><video class="testimonial-video" controls preload="none" playsinline poster="assets/img/testimonials/client-story-02.jpg" aria-label="Play client story 2"><source src="assets/video/client-story-02.mp4" type="video/mp4">Your browser does not support video playback.</video></div>
+      <div class="video-body"><span>Video testimonial · 0:24</span><h3>Client story 02</h3></div>
     </article>
     <article class="video-story rise" style="--d:.16s">
-      <div class="video-stage">
-        <span class="video-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span>
-        <span class="video-status">Coming soon</span>
-      </div>
-      <div class="video-body"><span>Client Video 03</span><h3>Progress worth sharing</h3><p>Stories from the Yashraj community are on the way.</p></div>
+      <div class="video-stage"><video class="testimonial-video" controls preload="none" playsinline poster="assets/img/testimonials/client-story-03.jpg" aria-label="Play client story 3"><source src="assets/video/client-story-03.mp4" type="video/mp4">Your browser does not support video playback.</video></div>
+      <div class="video-body"><span>Video testimonial · 1:00</span><h3>Client story 03</h3></div>
+    </article>
+    <article class="video-story rise">
+      <div class="video-stage"><video class="testimonial-video" controls preload="none" playsinline poster="assets/img/testimonials/client-story-04.jpg" aria-label="Play client story 4"><source src="assets/video/client-story-04.mp4" type="video/mp4">Your browser does not support video playback.</video></div>
+      <div class="video-body"><span>Video testimonial · 0:23</span><h3>Client story 04</h3></div>
+    </article>
+    <article class="video-story rise" style="--d:.08s">
+      <div class="video-stage"><video class="testimonial-video" controls preload="none" playsinline poster="assets/img/testimonials/client-story-05.jpg" aria-label="Play client story 5"><source src="assets/video/client-story-05.mp4" type="video/mp4">Your browser does not support video playback.</video></div>
+      <div class="video-body"><span>Video testimonial · 0:49</span><h3>Client story 05</h3></div>
+    </article>
+    <article class="video-story rise" style="--d:.16s">
+      <div class="video-stage"><video class="testimonial-video" controls preload="none" playsinline poster="assets/img/testimonials/client-story-06.jpg" aria-label="Play client story 6"><source src="assets/video/client-story-06.mp4" type="video/mp4">Your browser does not support video playback.</video></div>
+      <div class="video-body"><span>Video testimonial · 0:40</span><h3>Client story 06</h3></div>
+    </article>
+    <article class="video-story rise">
+      <div class="video-stage"><video class="testimonial-video" controls preload="none" playsinline poster="assets/img/testimonials/client-story-07.jpg" aria-label="Play client story 7"><source src="assets/video/client-story-07.mp4" type="video/mp4">Your browser does not support video playback.</video></div>
+      <div class="video-body"><span>Video testimonial · 0:37</span><h3>Client story 07</h3></div>
     </article>
   </div>
   <h3 class="written-head rise">Written experiences</h3>
@@ -1229,6 +1232,14 @@ h2.disp{font-family:'Eagle Lake',serif;font-weight:400;font-size:clamp(29px,4.5v
     if (audioContext) audioContext.suspend();
     updateSoundButton(false);
   }
+
+  var testimonialVideos = document.querySelectorAll('.testimonial-video');
+  testimonialVideos.forEach(function(video){
+    video.addEventListener('play', function(){
+      pauseAmbience();
+      testimonialVideos.forEach(function(other){ if (other !== video) other.pause(); });
+    });
+  });
 
   soundToggle.addEventListener('click', function(event){
     event.stopPropagation();
