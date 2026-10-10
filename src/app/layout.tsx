@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
-import { ClerkProvider } from '@clerk/nextjs'
+import SiteProviders from '@/components/auth/SiteProviders'
 import { Inter, Source_Serif_4 } from 'next/font/google'
-import { isClerkConfigured } from '@/lib/auth/clerk'
 import './globals.css'
 
 const inter = Inter({
@@ -47,18 +46,12 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const clerkEnabled = isClerkConfigured()
-
   return (
     <html lang="en" className={`${inter.variable} ${sourceSerif4.variable} h-full antialiased`}>
       <body suppressHydrationWarning className="min-h-full flex flex-col bg-white text-charcoal font-sans">
-        {clerkEnabled ? (
-          <ClerkProvider>
-            <div className="page-enter">{children}</div>
-          </ClerkProvider>
-        ) : (
+        <SiteProviders>
           <div className="page-enter">{children}</div>
-        )}
+        </SiteProviders>
       </body>
     </html>
   )

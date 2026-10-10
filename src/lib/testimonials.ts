@@ -136,6 +136,9 @@ async function findPlaceId(apiKey: string): Promise<string | null> {
 }
 
 export async function getTestimonials(): Promise<TestimonialsResult> {
+  if (process.env.YASHRAJ_STATIC_BUILD === '1') {
+    return { items: [], featuredItems: [], source: 'fallback' }
+  }
   const apiKey = process.env.GOOGLE_MAPS_API_KEY
   if (!apiKey) {
     return buildFallbackResult()

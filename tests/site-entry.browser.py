@@ -1,8 +1,10 @@
 """Validate both full-card links and the bundled Ayurvedic site on localhost."""
 from urllib.parse import urlparse
+import os
+import re
 from playwright.sync_api import sync_playwright
 
-ORIGIN = 'http://127.0.0.1:3000'
+ORIGIN = os.environ.get('SITE_TEST_ORIGIN', 'http://127.0.0.1:3000').rstrip('/')
 
 with sync_playwright() as p:
     browser = p.chromium.launch()
@@ -26,11 +28,11 @@ with sync_playwright() as p:
             assert first['y'] + first['height'] < second['y']
         cards.nth(0).focus()
         page.keyboard.press('Enter')
-        page.wait_for_url(ORIGIN + '/clinic')
+        page.wait_for_url(re.compile(re.escape(ORIGIN) + r'/clinic/?$'))
         assert page.locator('.clinic-hero').is_visible()
         page.goto(ORIGIN, wait_until='networkidle')
         page.locator('a[aria-labelledby="ayu-choice-title"] img').click()
-        page.wait_for_url(ORIGIN + '/ayurveda')
+        page.wait_for_url(re.compile(re.escape(ORIGIN) + r'/ayurveda/?$'))
         page.wait_for_load_state('networkidle')
         assert page.title().startswith('Yashraj Ayu')
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')

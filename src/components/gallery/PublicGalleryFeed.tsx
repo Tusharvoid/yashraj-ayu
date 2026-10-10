@@ -10,12 +10,14 @@ type PublicGalleryFeedProps = {
   initialItems: GalleryItem[]
   initialNextOffset: number
   initialHasMore: boolean
+  staticItems?: GalleryItem[]
 }
 
 export default function PublicGalleryFeed({
   initialItems,
   initialNextOffset,
   initialHasMore,
+  staticItems,
 }: PublicGalleryFeedProps) {
   const [items, setItems] = useState(initialItems)
   const [nextOffset, setNextOffset] = useState(initialNextOffset)
@@ -24,6 +26,13 @@ export default function PublicGalleryFeed({
   const [error, setError] = useState('')
 
   async function loadMore() {
+    if (staticItems) {
+      const nextItems = staticItems.slice(nextOffset, nextOffset + 8)
+      setItems((current) => [...current, ...nextItems])
+      setNextOffset(nextOffset + nextItems.length)
+      setHasMore(nextOffset + nextItems.length < staticItems.length)
+      return
+    }
     setLoadingMore(true)
     setError('')
 

@@ -101,7 +101,9 @@ export default function Footer() {
         </div>
         <div className="clinic-footer-bottom">
           <span>© {new Date().getFullYear()} Yashraj Clinic</span>
-          <Link href="/doctor">Staff portal</Link>
+          {process.env.YASHRAJ_STATIC_BUILD !== '1' && (
+            <Link href="/doctor">Staff portal</Link>
+          )}
           <a
             href="https://rudranshcortex.live"
             target="_blank"

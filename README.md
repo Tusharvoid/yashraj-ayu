@@ -11,13 +11,30 @@ This is a [Next.js](https://nextjs.org) project for Yashraj Clinic.
 This replaces the previous static-only root of `Tusharvoid/yashraj-ayu`.
 The former site is preserved under `public/ayurveda` and in Git history.
 
-**Hosting migration:** this repository now requires a Next.js runtime. The old
-static Cloudflare Pages upload/build settings are not sufficient. The existing
-OpenNext configuration targets Cloudflare Workers (`npm run cf:build`,
-`npm run cf:deploy`); review `wrangler.jsonc` for the intended Worker name,
-self-reference binding and domain before deploying. No Cloudflare settings or
-domains are changed by committing this code. A connected Git integration may
-automatically attempt a build when `main` is pushed.
+### Cloudflare Pages (public websites)
+
+`wrangler.jsonc` points Pages at `dist/`, not the repository root. The tested
+static artifact is committed so the existing blank build command also works.
+The opening page, both websites, images, videos and WhatsApp booking share the
+same domain. No database, Clerk credentials or Worker is required.
+
+After changing website source, run `npm ci` then `npm run build:pages` and commit
+the refreshed `dist/` with the source changes. Alternatively set the Pages build
+command to `npm run build:pages`, root directory to the repository root, and
+output directory to `dist`. Production branch: `main`.
+
+The build uses an isolated temporary source tree. It excludes API, staff,
+patient, video-room and sign-in routes, disables server image optimization,
+and bundles gallery pagination locally. Database-backed vision uploads and
+live Google reviews require the separate server app; the public export shows
+the existing vision text and a link to the clinic's Google reviews instead.
+
+### Optional server application
+
+`npm run build` and Docker retain the full Next.js app. The optional OpenNext
+commands (`npm run cf:build`, `npm run cf:deploy`) explicitly use
+`wrangler.worker.jsonc`; they do not deploy this Pages site. Review the Worker
+name, self-reference binding and domain before using that separate deployment.
 
 Public WhatsApp booking needs no database. Staff/patient features are separate:
 do not enable them with real patient data until the documented authorization

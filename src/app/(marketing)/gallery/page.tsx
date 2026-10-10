@@ -1,11 +1,14 @@
 import PublicGalleryFeed from '@/components/gallery/PublicGalleryFeed'
-import { getGalleryPage } from '@/lib/gallery'
+import { getAllGalleryItems } from '@/lib/gallery'
+import { connection } from 'next/server'
 import PageIntro from '@/components/marketing/PageIntro'
 import ConsultationCTA from '@/components/marketing/ConsultationCTA'
 
-export const dynamic = 'force-dynamic'
 export default async function GalleryPage() {
-  const initialGallery = await getGalleryPage(0, 8)
+  const staticBuild = process.env.YASHRAJ_STATIC_BUILD === '1'
+  if (!staticBuild) await connection()
+  const allItems = await getAllGalleryItems()
+  const initialItems = allItems.slice(0, 8)
   return (
     <>
       <PageIntro
@@ -16,9 +19,10 @@ export default async function GalleryPage() {
       <section className="clinic-section">
         <div className="clinic-container">
           <PublicGalleryFeed
-            initialItems={initialGallery.items}
-            initialNextOffset={initialGallery.nextOffset}
-            initialHasMore={initialGallery.hasMore}
+            initialItems={initialItems}
+            initialNextOffset={initialItems.length}
+            initialHasMore={allItems.length > initialItems.length}
+            staticItems={staticBuild ? allItems : undefined}
           />
         </div>
       </section>

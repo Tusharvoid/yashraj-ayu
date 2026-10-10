@@ -75,5 +75,21 @@ record lookup remain launch blockers for real patient data. Configure and test
 Clerk, PostgreSQL, email and Jitsi separately. Without a database the build logs
 the existing site-settings fallback warning; it still completes.
 
-No push, Cloudflare deployment or changes to the Ayu reference repository were
-performed as part of this redesign.
+The initial redesign was local-only. Subsequent user-authorized publication
+combined both websites in `Tusharvoid/yashraj-ayu` on `main`.
+
+## Cloudflare Pages export
+
+`npm run build:pages` now produces a public-only `dist/` artifact. Its committed
+copy supports the existing no-build Pages deployment; `wrangler.jsonc` declares
+that output directory. Do not upload the repository root as website assets.
+
+The original full-stack app remains in source and Docker; its Worker config is
+`wrangler.worker.jsonc`. No private routes or API handlers are exported to Pages.
+Gallery pagination runs locally, booking hands off to WhatsApp, and no Clerk or
+database setup is required for public visitors. Dynamic vision uploads and live
+Google review fetching remain server-only features.
+
+To test the exported files, serve `dist/` on port 3001, set `SITE_TEST_ORIGIN` to
+`http://127.0.0.1:3001`, then run `tests/site-entry.browser.py`,
+`tests/booking-whatsapp.browser.py` and `tests/pages-export.browser.py` with Python.

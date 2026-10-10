@@ -17,6 +17,9 @@
 /.next/
 /.open-next/
 /out/
+/.pages-build-*/
+
+# dist/ is intentionally committed: Cloudflare's blank build command serves it.
 
 # production
 /build

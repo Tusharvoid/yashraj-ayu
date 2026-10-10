@@ -1,11 +1,13 @@
 import { getVisionImages } from '@/lib/vision'
+import { connection } from 'next/server'
 import VisionSlideshow from '@/components/vision/VisionSlideshow'
 import PageIntro from '@/components/marketing/PageIntro'
 import ConsultationCTA from '@/components/marketing/ConsultationCTA'
 
-export const dynamic = 'force-dynamic'
 export default async function VisionPage() {
-  const images = await getVisionImages()
+  const staticBuild = process.env.YASHRAJ_STATIC_BUILD === '1'
+  if (!staticBuild) await connection()
+  const images = staticBuild ? [] : await getVisionImages()
   return (
     <>
       <PageIntro

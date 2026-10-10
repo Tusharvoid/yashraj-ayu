@@ -1,5 +1,6 @@
 """Run against localhost:3000 with Playwright installed. Never contacts WhatsApp."""
 from urllib.parse import urlparse, parse_qs
+import os
 from playwright.sync_api import sync_playwright
 
 
@@ -18,7 +19,7 @@ with sync_playwright() as p:
                           body='<p>WhatsApp handoff intercepted. No message sent.</p>')
 
         page.route('https://wa.me/**', intercept)
-        page.goto('http://127.0.0.1:3000/book', wait_until='networkidle')
+        page.goto(os.environ.get('SITE_TEST_ORIGIN', 'http://127.0.0.1:3000').rstrip('/') + '/book', wait_until='networkidle')
         page.get_by_role('button', name='Continue', exact=True).click()
         assert page.locator('#booking-name').evaluate('(input) => !input.validity.valid')
         page.get_by_label('Full Name').fill('Test & Visitor')

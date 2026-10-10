@@ -12,6 +12,8 @@ import {
   getServiceBySlug,
 } from '@/lib/utils'
 
+export const dynamicParams = false
+
 export default async function ServiceDetailPage({
   params,
 }: {
