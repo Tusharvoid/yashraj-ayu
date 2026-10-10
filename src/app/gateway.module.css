@@ -1,0 +1,237 @@
+.gateway {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse at 50% 0, #46371830, transparent 55%), #09090a;
+}
+.header,
+.main,
+.footer {
+  width: min(1100px, calc(100% - 64px));
+  margin-inline: auto;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 24px;
+  border-bottom: 1px solid #d0af5826;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-source-serif-4), Georgia, serif;
+  font-size: 27px;
+  line-height: 1.1;
+}
+.brand img {
+  border-radius: 50%;
+}
+.brand small {
+  display: block;
+  margin-top: 7px;
+  font-family: var(--font-inter), sans-serif;
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.location {
+  color: var(--muted);
+  font-size: 12px;
+}
+.main {
+  flex: 1;
+  padding-block: 44px 30px;
+}
+.intro {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.eyebrow,
+.cardBrand {
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.intro h1 {
+  margin-top: 12px;
+  font-size: clamp(36px, 4.2vw, 56px);
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+.intro h1 em {
+  color: var(--gold-bright);
+  font-weight: 400;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+}
+.card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #d0af583d;
+  border-radius: 8px;
+  background: #141310;
+  transition: border-color 0.2s;
+}
+.card:hover,
+.card:focus-within {
+  border-color: #d0af5899;
+}
+.ayuCard {
+  background: #101611;
+  border-color: #7692794d;
+}
+.visual {
+  position: relative;
+  height: 218px;
+  overflow: hidden;
+  background: #15130f;
+}
+.doctorVisual {
+  background: radial-gradient(ellipse at center, #64503c55, #15130f 75%);
+}
+.portrait {
+  object-fit: contain;
+  object-position: center;
+}
+.ayuPhoto {
+  object-fit: cover;
+  object-position: center 64%;
+}
+.number {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  left: 18px;
+  padding: 5px 9px;
+  border: 1px solid #d0af5840;
+  border-radius: 3px;
+  background: #09090acc;
+  color: var(--gold-bright);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+.photoLabel {
+  position: absolute;
+  bottom: 14px;
+  left: 18px;
+  color: var(--muted);
+  font-size: 10px;
+  padding: 4px 8px;
+  background: #09090acc;
+  border-radius: 3px;
+}
+.copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 28px 32px 30px;
+}
+.cardBrand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.ayuCard .cardBrand {
+  color: #b7c7a1;
+}
+.copy h2 {
+  font-size: clamp(30px, 3vw, 39px);
+  letter-spacing: -0.025em;
+  line-height: 1.16;
+  margin-top: 16px;
+}
+.copy h2 span {
+  display: block;
+}
+.description {
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--muted);
+  margin-block: 18px 26px;
+  max-width: 43ch;
+}
+.cardArrow {
+  align-self: flex-end;
+  margin-top: auto;
+  color: var(--gold-bright);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.card:hover .cardArrow,
+.card:focus-visible .cardArrow {
+  transform: translate(3px, -3px);
+}
+.hint {
+  margin-top: 26px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+}
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 22px;
+  color: var(--muted);
+  border-top: 1px solid #d0af5826;
+  font-size: 10px;
+}
+.footer a span {
+  color: var(--gold-bright);
+}
+@media (max-width: 759px) {
+  .header,
+  .main,
+  .footer {
+    width: calc(100% - 40px);
+  }
+  .header {
+    padding-block: 20px;
+    gap: 16px;
+  }
+  .brand {
+    font-size: 24px;
+  }
+  .brand img {
+    width: 42px;
+    height: 42px;
+  }
+  .location {
+    font-size: 10px;
+  }
+  .main {
+    padding-top: 34px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 500px;
+    margin-inline: auto;
+  }
+  .visual {
+    height: 200px;
+  }
+  .copy {
+    padding: 25px 24px;
+  }
+  .copy h2 {
+    font-size: 34px;
+  }
+  .hint {
+    max-width: 30ch;
+    margin-inline: auto;
+  }
+}

@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@import "./marketing.css";
+
+:root {
+  --primary: #2D6A4F;
+  --accent: #C9861C;
+  --surface: #F9F7F4;
+  --charcoal: #1C1C1C;
+  --muted: #6B7280;
+  --border: #E8E4DF;
+  --panel: #ffffff;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+  --color-charcoal: var(--charcoal);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-panel: var(--panel);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-source-serif-4);
+}
+
+body {
+  background: #ffffff;
+  color: var(--charcoal);
+  overflow-x: clip;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+.page-enter {
+  animation: page-enter 0.45s ease both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .page-enter {
+    animation: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,22 @@
+# Development override — hot reload, no nginx, postgres exposed on host
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: .
+      target: deps
+    command: npm run dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://yashraj:yashraj123@postgres:5432/yashrajclinic
+
+  nginx:
+    profiles: ["disabled"]
